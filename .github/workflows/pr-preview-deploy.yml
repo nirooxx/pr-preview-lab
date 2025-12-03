@@ -28,6 +28,9 @@ jobs:
         with:
           name: preview-build
           path: ./preview-build
+          repository: ${{ github.event.workflow_run.repository.full_name }}
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy / Cleanup PR preview
         uses: rossjrw/pr-preview-action@v1
