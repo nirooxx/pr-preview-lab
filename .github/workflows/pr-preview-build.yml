@@ -22,6 +22,15 @@ jobs:
       - name: Build Docusaurus site for PR
         run: |
           set -euo pipefail
+
+          PR_PATH="/pr-preview-lab/pr-previews/pr-${{ github.event.pull_request.number }}/"
+          CFG="docusaurus.config.ts"
+
+          cp "$CFG" "$CFG.bak"
+          trap 'mv "$CFG.bak" "$CFG"' EXIT
+
+          sed -i -E "s#baseUrl:\s*'/pr-preview-lab/'#baseUrl: '${PR_PATH}'#g" "$CFG"
+
           npm ci
           npm run build
 
