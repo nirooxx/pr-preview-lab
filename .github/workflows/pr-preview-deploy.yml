@@ -50,4 +50,4 @@ jobs:
           number: ${{ steps.pr.outputs.number }}
           header: pr-preview
           message: |
-            🚀 Preview: https://nirooxx.github.io/pr-previews/pr-${{ steps.pr.outputs.number }}/
+            🚀 Preview: https://nirooxx.github.io/pr-preview-lab/pr-previews/pr-${{ steps.pr.outputs.number }}/
