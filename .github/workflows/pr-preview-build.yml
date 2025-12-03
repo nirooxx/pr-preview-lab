@@ -22,12 +22,16 @@ jobs:
       - name: Build Docusaurus site for PR
         run: |
           set -euo pipefail
-
           npm ci
           npm run build
+
+      - name: Write PR number
+        run: echo "${{ github.event.pull_request.number }}" > pr_number.txt
 
       - name: Upload preview artifact
         uses: actions/upload-artifact@v4
         with:
           name: preview-build
-          path: build
+          path: |
+            build
+            pr_number.txt
