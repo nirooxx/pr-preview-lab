@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkpr_preview_lab=globalThis.webpackChunkpr_preview_lab||[]).push([[1903],{1912:e=>{e.exports=JSON.parse('{"blogBasePath":"/pr-preview-lab/pr-previews/pr-1/blog","blogTitle":"Blog","authorsListPath":"/pr-preview-lab/pr-previews/pr-1/blog/authors"}')}}]);
