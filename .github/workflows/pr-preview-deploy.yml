@@ -41,3 +41,4 @@ jobs:
           umbrella-dir: pr-previews
           pages-base-url: https://nirooxx.github.io/pr-preview-lab
           token: ${{ secrets.PR_PREVIEW_TOKEN }}
+          action: deploy
