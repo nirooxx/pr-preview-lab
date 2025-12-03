@@ -1,0 +1,40 @@
+name: PR Preview (deploy)
+
+on:
+  workflow_run:
+    workflows: ["PR Preview (build)"]
+    types:
+      - completed
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  pr-preview-deploy:
+    if: >
+      ${{
+        github.event.workflow_run.event == 'pull_request' &&
+        github.event.workflow_run.conclusion == 'success'
+      }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download preview artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: preview-build
+          path: ./preview-build
+
+      - name: Deploy / Cleanup PR preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./preview-build
+          deploy-repository: nirooxx/pr-preview-lab
+          preview-branch: gh-pages
+          umbrella-dir: pr-previews
+          pages-base-url: https://nirooxx.github.io/pr-preview-lab
+          token: ${{ secrets.PR_PREVIEW_TOKEN }}
