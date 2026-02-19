@@ -15,7 +15,7 @@ const config: Config = {
 
   url: 'https://nirooxx.github.io',
 
-  baseUrl: '/pr-preview-lab/',
+  baseUrl: process.env.BASE_URL ?? '/pr-preview-lab/',
 
   organizationName: 'nirooxx',
   projectName: 'pr-preview-lab',

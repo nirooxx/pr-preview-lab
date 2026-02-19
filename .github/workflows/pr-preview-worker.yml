@@ -1,0 +1,23 @@
+name: PR Preview (fork deploy)
+
+on:
+  workflow_run:
+    workflows: ["PR Preview"]
+    types: [completed]
+
+jobs:
+  pr-preview-fork-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+      pull-requests: write
+
+    steps:
+      - name: PR preview (worker)
+        uses: open-resource-discovery/pr-preview-action@chore/oss-prep
+        with:
+          token: ${{ secrets.PR_PREVIEW_TOKEN }}
+          target-branch: gh-pages
+          pages-base-url: https://nirooxx.github.io/pr-preview-lab
+          umbrella-dir: pr-previews

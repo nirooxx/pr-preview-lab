@@ -1,0 +1,38 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+jobs:
+  pr-preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+      pull-requests: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        if: github.event.action != 'closed'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build preview
+        if: github.event.action != 'closed'
+        env:
+          BASE_URL: /pr-preview-lab/pr-previews/pr-${{ github.event.pull_request.number }}/
+        run: |
+          npm ci
+          npm run build
+
+      - name: PR preview
+        uses: open-resource-discovery/pr-preview-action@chore/oss-prep
+        with:
+          fork: true
+          target-branch: gh-pages
+          pages-base-url: https://nirooxx.github.io/pr-preview-lab
+          umbrella-dir: pr-previews
