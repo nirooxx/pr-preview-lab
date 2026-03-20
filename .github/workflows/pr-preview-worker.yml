@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: PR preview (worker)
-        uses: open-resource-discovery/pr-preview-action@chore/oss-prep
+        uses: open-resource-discovery/pr-preview-action@feat/internal-qr-generation
         with:
           token: ${{ secrets.PR_PREVIEW_TOKEN }}
           target-branch: gh-pages
