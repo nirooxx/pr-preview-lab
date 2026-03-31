@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkpr_preview_lab=globalThis.webpackChunkpr_preview_lab||[]).push([[8697],{4666:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/pr-preview-lab/pr-previews/pr-6/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
