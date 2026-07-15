@@ -32,7 +32,7 @@ jobs:
           npm run build
 
       - name: PR preview
-        uses: open-resource-discovery/pr-preview-action@feat/internal-qr-generation
+        uses: open-resource-discovery/pr-preview-action@v0.0.1
         with:
           fork: true
           target-branch: gh-pages
