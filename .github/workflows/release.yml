@@ -1,16 +1,23 @@
-name: 'GitHub Release'
+name: "GitHub Release"
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version for the release (e.g. 1.2.3)'
+        description: "Version for the release (e.g. 1.2.3)"
         required: false
         type: string
 
 jobs:
   create-release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+      checks: write
+      statuses: write
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -18,7 +25,7 @@ jobs:
           fetch-depth: 0
 
       - name: Create GitHub Release
-        uses: open-resource-discovery/github-release@fix/contributor-deduplication
+        uses: open-resource-discovery/github-release@38489fb7c780fb11e5e64b70c50df6ba40e7ee2c
         with:
           tag-template: "v/<version>"
           version: ${{ inputs.version }}

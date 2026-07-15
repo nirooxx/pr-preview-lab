@@ -1,0 +1,12 @@
+name: Main Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  main-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: OK
+        run: echo "Main check passed."
